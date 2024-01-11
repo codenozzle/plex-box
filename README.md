@@ -5,6 +5,31 @@ Sonarr / Radarr / Jackett / NZBGet / Deluge / OpenVPN / Plex
 TV shows and movies download, sort, with the desired quality and subtitles, behind a VPN (optional), ready to watch, in a beautiful media player.
 All automated.
 
+## Quick setup
+```sh
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+git clone https://github.com/codenozzle/plex-box
+sudo reboot
+
+
+cd plex-box
+docker compose up -d
+
+sudo cgdisk /dev/sdb
+sudo mkfs -t ext4 /dev/sdb
+sudo mkdir /storage
+sudo nano -Bw /etc/fstab
+/dev/sdb /storage ext4 defaults 0 2
+sudo mount -av
+
+cd ..
+mkdir media
+rsync --inplace -rhvP cinema@192.168.1.5:/media/storage1/media/movies/Lego_Batman_Movie.mkv /home/plex/media
+sudo mv /home/plex/media/*.* /media/complete/movies
+```
+
 ## Table of Contents
 
 - [HTPC Download Box](#htpc-download-box)
