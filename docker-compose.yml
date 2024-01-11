@@ -95,7 +95,7 @@ services:
     volumes:
       - ${ROOT}/config/plex/db:/config # plex database
       - ${ROOT}/config/plex/transcode:/transcode # temp transcoded files
-      - ${STORAGE}/complete:/data # media library
+      - ${STORAGE}:/data # media library
 
   bazarr:
     container_name: bazarr
